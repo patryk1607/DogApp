@@ -1,15 +1,21 @@
-const btn = document.querySelector('.quest')
-const img = document.querySelector('img')
+const input = document.querySelector('.search')
+const list = document.querySelectorAll('li')
 
 
-const URL = 'https://dog.ceo/api/breeds/image/random'
+const searchEngine = e => {
 
+const text = e.target.value.toLowerCase()
+console.log(`text ${text}`);
 
-btn.addEventListener('click', () => {
-fetch(URL)
-.then(res => res.json())
-.then(data => img.setAttribute('src', data.message))
-.catch(error => console.console.error(error))
+list.forEach(el =>{
+    const task = el.textContent;
+
+    if(task.toLowerCase().indexOf(text) !== -1){
+        el.style.display = 'block'
+    }else {
+        el.style.display = 'none'
+    }
 })
-
+}
+input.addEventListener('keyup', searchEngine)
 
